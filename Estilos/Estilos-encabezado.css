@@ -7,6 +7,10 @@ body {
 /* .contenedor-todo */
 .container {
   padding: 16px auto;
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
 }
 
 /* .contenedor-1 */
@@ -18,6 +22,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
+  /*width: 1140px;*/
 }
 
 /* .encabezado */
@@ -69,8 +74,44 @@ body {
   font-family: "Varela Round", sans-serif;
 }
 
+.tabla-general {
+  width: 100%;
+  margin-top: 20px;
+}
+
+thead {
+  width: 100%;
+  font-weight: 600;
+}
+
 .tr-table {
   color: #566787;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 13px;
+  border-bottom: 2px solid #e9e9e9;
+}
+
+.th:not(:first-child) {
+  flex: 1;
+}
+
+.th {
+  padding: 12px 15px;
+}
+
+input[type=checkbox] :before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  background: white;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
 .boton {
