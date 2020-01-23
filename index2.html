@@ -28,43 +28,40 @@
   <body>
     <div class="container">
       <section class="section-container">
-
-          <!---Encabezado-->
+        <!---Encabezado-->
 
         <header class="header">
-          <h1>Manage Employees</h1>
-          <button>Add New Employee</button>
+          <div class="title-container">
+            <h1 class="header-title">Manage Employees</h1>
+            <button class="boton">Add New Employee</button>
+          </div>
         </header>
 
         <section class="info-container">
-
-            <!--Buscador/filtro-->
+          <!--Buscador/filtro-->
 
           <div class="contenedor-buscador">
             <input
               id="buscador"
               class="buscador-texto"
-              placeholder="Ingrese nombre/mail/numero"
-              type="text"/>
+              placeholder="Filter..."
+              type="text"
+            />
           </div>
 
           <!-- Tabla -->
           <div class="table-container">
-              <table class="tabla-general">
-                 <tr>
-                     <th>Actions</th>
-                     <th><input type="checkbox" id="checkbox"></th>
-                     <th> Name</th>
-                     <th>Email</th>
-                     <th>Adress</th>
-                     <th >Phone</th>
-                 </tr>
-              </table>
-
+            <table class="tabla-general">
+              <tr class="tr-table">
+                <th id="check"><input type="checkbox" id="checkbox" /></th>
+                <th id="name">Name</th>
+                <th id="email">Email</th>
+                <th id="adress">Adress</th>
+                <th id="phone">Phone</th>
+                <th id="actions">Actions</th>
+              </tr>
+            </table>
           </div>
-
-
-
         </section>
       </section>
     </div>
