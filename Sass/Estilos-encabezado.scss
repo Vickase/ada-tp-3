@@ -1,0 +1,67 @@
+body {
+  background: whitesmoke;
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+}
+/* .contenedor-todo */
+.container {
+  padding: 16px auto;
+}
+
+/* .contenedor-1 */
+.section-container {
+  width: 90%;
+  background: white;
+  padding: 15px 20px;
+  margin: 25px 0;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* .encabezado */
+.header {
+  padding-bottom: 15px;
+  background: #435d7d;
+  color: white;
+  padding: 16px 22px;
+  margin: -15px -20px 10px;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.subtitulo-encabezado {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+.subtitulo-encabezado .boton {
+  background-color: lightgreen;
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: white;
+}
+
+.boton {
+  text-decoration: none;
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+}
