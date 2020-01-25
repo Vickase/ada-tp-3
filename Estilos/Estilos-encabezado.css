@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   background: whitesmoke;
   font-family: "Varela Round", sans-serif;
@@ -103,20 +104,59 @@ body {
 }
 .container .section-container .tabla-general thead .tr-table .th {
   padding: 12px 15px;
-}
-.container .section-container .tabla-general thead .tr-table #check #checkbox :before {
-  content: "";
-  margin-right: 10px;
-  display: inline-block;
-  vertical-align: text-top;
-  background: white;
-  border: 1px solid #bbb;
-  border-radius: 2px;
-  box-sizing: border-box;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container .section-container .tabla-general thead .tr-table .th:not(:first-child) {
   flex: 1;
+}
+
+input[type=checkbox] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label:before {
+  content: "✔";
+  border: 1px solid #bbb;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.2em;
+  padding-bottom: 0.3em;
+  margin-right: 0.2em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.2s;
+}
+
+input[type=checkbox] + label:active:before {
+  transform: scale(0);
+}
+
+input[type=checkbox]:checked + label:before {
+  border-color: #03a9f4;
+  background-color: #03a9f4;
+  color: #fff;
+}
+
+input[type=checkbox]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+input[type=checkbox]:checked:disabled + label:before {
+  transform: scale(1);
+  border-color: #03a9f4;
+  background-color: #03a9f4;
 }
 
 /*# sourceMappingURL=Estilos-encabezado.css.map */
