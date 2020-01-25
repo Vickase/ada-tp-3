@@ -23,72 +23,52 @@
       integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs="
       crossorigin="anonymous"
     ></script>
-
-    <title>Tercer trabajo Practico</title>
+    <title>Manage Employees - tercer tp</title>
   </head>
   <body>
-    <div class="contenedor-todo">
-      <section class="contenedor-1">
+    <div class="container">
+      <section class="section-container">
         <!---Encabezado-->
-        <div class="encabezado">
-          <div class="contenido-encabezado">
-            <div class="titulo-encabezado">
-              <h1>Manage Employees</h1>
-            </div>
-            <div class="subtitulo-encabezado">
-              <a href="#" class="boton agragar">
-                <i class="material-icons">&#xE147;</i>
-                <span> Add New Employee</span></a
-              >
-            </div>
-          </div>
-        </div>
 
-        <!--Buscador/filtro-->
-        <div class="contenedor-buscador">
-          <div class="contenido-buscador">
+        <header class="header">
+          <h1 class="header-title">Manage Employees</h1>
+          <button class="boton">
+            <i class="material-icons"> add_circle </i>
+            <span class="button-text">Add New Employee </span>
+          </button>
+        </header>
+
+        <section class="info-container">
+          <!--Buscador/filtro-->
+
+          <div class="contenedor-buscador">
             <input
               id="buscador"
               class="buscador-texto"
-              placeholder="Ingrese nombre/mail/numero"
+              placeholder="Filter..."
               type="text"
             />
           </div>
-        </div>
 
-        <!--Tabla-->
-        <table class="tabla-general">
-          <thead class="encabezado-tabla">
-            <tr class="primer-fila">
-              <th class="primer-colum">
-                <span class="chek">
-                  <input type="checkbox" id="checkbox-tabla" />
-                </span>
-              </th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Adress</th>
-              <th>Phone</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Flor Salinas</td>
-              <td>florsalinas25@live.com</td>
-              <td>kellertas 2345</td>
-              <td>1234567890</td>
-              <td>
-                <a href="#">
-                  <i class="material-icons" title="Edit">&#xE254;</i>
-                </a>
-                <a href="#">
-                  <i class="material-icons" title="Delete">&#xE872;</i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <!-- Tabla -->
+          <div class="table-container">
+            <table class="tabla-general">
+              <thead>
+                <tr class="tr-table">
+                  <th class="th" id="check">
+                    <input type="checkbox" id="checkbox" name="checkbox"/>
+                    <label for="checkbox"></label>
+                  </th>
+                  <th class="th">Name</th>
+                  <th class="th">Email</th>
+                  <th class="th">Address</th>
+                  <th class="th">Phone</th>
+                  <th class="th">Actions</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </section>
       </section>
     </div>
   </body>
