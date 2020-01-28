@@ -1,4 +1,28 @@
 @charset "UTF-8";
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  display: none;
+}
+.bg-modal .modal-container {
+  width: 400px;
+  height: 490px;
+  padding: 10px;
+  background: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.bg-modal .modal-container .modal-header {
+  width: 100%;
+  height: auto;
+}
+
 body {
   background: whitesmoke;
   font-family: "Varela Round", sans-serif;
@@ -47,6 +71,7 @@ body {
   color: white;
   align-content: center;
   text-decoration: none;
+  cursor: pointer;
 }
 .container .section-container .header .boton .material-icons {
   font-family: "Material Icons";
@@ -96,20 +121,15 @@ body {
 .container .section-container .tabla-general thead .tr-table {
   color: #566787;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   font-size: 13px;
-  border-bottom: 2px solid #e9e9e9;
 }
 .container .section-container .tabla-general thead .tr-table .th {
   padding: 12px 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-bottom: 2px solid #e9e9e9;
 }
 .container .section-container .tabla-general thead .tr-table .th:not(:first-child) {
   flex: 1;
+  text-align: left;
 }
 
 input[type=checkbox] + label {
@@ -125,7 +145,7 @@ input[type=checkbox] {
 
 input[type=checkbox] + label:before {
   content: "✔";
-  border: 1px solid #bbb;
+  border: 1px solid #ccc;
   border-radius: 0.2em;
   display: inline-block;
   width: 1em;
@@ -145,7 +165,7 @@ input[type=checkbox] + label:active:before {
 input[type=checkbox]:checked + label:before {
   border-color: #03a9f4;
   background-color: #03a9f4;
-  color: #fff;
+  color: white;
 }
 
 input[type=checkbox]:disabled + label:before {
@@ -159,4 +179,4 @@ input[type=checkbox]:checked:disabled + label:before {
   background-color: #03a9f4;
 }
 
-/*# sourceMappingURL=Estilos-encabezado.css.map */
+/*# sourceMappingURL=estilos-encabezado.css.map */
