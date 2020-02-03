@@ -1,4 +1,89 @@
 @charset "UTF-8";
+.modal {
+  align-items: center;
+  background-color: #00000054;
+  box-sizing: border-box;
+  display: none;
+  height: 100%;
+  justify-content: center;
+  opacity: 1;
+  padding: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.card {
+  background-color: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: none;
+  flex-direction: column;
+  margin: 30px;
+  overflow: hidden;
+  width: 33%;
+}
+.card .card-header {
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.card .card-header h2 {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0px;
+}
+.card .card-header i {
+  color: #cfccc6;
+  cursor: pointer;
+}
+.card .card-header i:hover {
+  color: #636363;
+}
+.card .card-body {
+  padding: 20px;
+}
+.card .card-body div {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+.card .card-body div label {
+  font-size: 13px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.card .card-body div input {
+  border-radius: 2px;
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+}
+.card .card-body div .input-address {
+  height: 70px;
+}
+.card .card-footer {
+  background-color: #ecf0f1;
+  border-top: 1px solid;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  height: 30%;
+  width: 100%;
+}
+.card .card-footer button {
+  height: 35px;
+  margin: 7px;
+  width: 90px;
+}
+
 body {
   background: whitesmoke;
   font-family: "Varela Round", sans-serif;
