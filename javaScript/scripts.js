@@ -63,7 +63,7 @@ const fetchUsers = async q => {
 
 const insertUsersTable = users => {
   const tablaBody = document.querySelector("#tabla-users > tbody");
-  tablaBody.innerHTML="";
+  tablaBody.innerHTML = "";
   users.forEach(user => {
     let tableRow = document.createElement("tr");
     let tdCheck = document.createElement("td");
@@ -76,7 +76,7 @@ const insertUsersTable = users => {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = "check";
-    checkbox.id = "checkbox";
+    checkbox.id = `checkbox-${user.id}`;
 
     const label = document.createElement("label");
     label.htmlFor = checkbox.id;
@@ -91,8 +91,10 @@ const insertUsersTable = users => {
 
     editIcon.innerHTML = "edit";
     deleteIcon.innerHTML = "delete";
-    editIcon.setAttribute("class", "material-icons");
-    deleteIcon.setAttribute("class", "material-icons");
+    editIcon.setAttribute("class", "material-icons tableIcons");
+    editIcon.style.color = "#ffc107";
+    deleteIcon.setAttribute("class", "material-icons tableIcons");
+    deleteIcon.style.color = "#f44336";
 
     tdCheck.appendChild(checkbox);
     tdCheck.appendChild(label);
@@ -114,6 +116,10 @@ window.addEventListener("load", event => {
   fetchUsers();
 });
 
+const clearForm = () => {
+  document.querySelector(".modal-form").reset();
+};
+
 // ==================================================================
 
 const abrirModal = () => {
@@ -134,6 +140,8 @@ const cerrarModal = () => {
   modalWindow.classList.add("fadeOut");
   modal.classList.add("fadeOutUp");
   setTimeout(() => (modalWindow.style.display = "none"), 1000);
+  clearForm();
+  enableAddBtn();
 };
 
 const newEmployeeBtn = document.querySelector("#new-employee");
@@ -146,10 +154,21 @@ cancelBtn.addEventListener("click", cerrarModal);
 
 const addBtn = document.querySelector("#add-btn");
 
+const disableAddBtn = () => {
+  addBtn.disable = true;
+  addBtn.style.cursor = "not-allowed";
+  addBtn.style.opacity = "0.65";
+};
+const enableAddBtn = () => {
+  addBtn.disable = false;
+  addBtn.style.cursor = "pointer";
+};
+
 const addEmployee = async () => {
   try {
     const employee = createEmployeeObject();
     if (isEmployeeValid(employee)) {
+      disableAddBtn();
       await postearEmployee(employee);
       await fetchUsers();
       cerrarModal();
@@ -162,3 +181,37 @@ const addEmployee = async () => {
 };
 
 addBtn.addEventListener("click", addEmployee);
+
+const filtro = document.querySelector("#buscador");
+
+const filterEmployee = () => {
+  const tbody = document.querySelector("#tabla-users > tbody");
+  const searchValue = filtro.value.toLowerCase();
+  const tr = tbody.getElementsByTagName("tr");
+
+  for (let i = 0; i < tr.length; i++) {
+    const td = tr[i].getElementsByTagName("td")[1]; //[1] porque se refiere al name;
+    if (td) {
+      const tdValue = td.textContent || td.innerText;
+      if (tdValue.toLowerCase().indexOf(searchValue) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+};
+
+filtro.addEventListener("keyup", filterEmployee);
+
+const sourceCheckbox = document.querySelector("#checkbox");
+const selectAllCheckbox = sourceCheckbox => {
+  const checkboxes = document.getElementsByName("check");
+  for (var i = 0, n = checkboxes.length; i < n; i++) {
+    checkboxes[i].checked = sourceCheckbox.checked;
+  }
+};
+
+sourceCheckbox.addEventListener("click",()=>{
+  selectAllCheckbox(sourceCheckbox);
+});

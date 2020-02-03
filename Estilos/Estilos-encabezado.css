@@ -148,7 +148,7 @@ body {
 }
 .container .section-container .header .header-title {
   font-size: 24px;
-  margin: 0;
+  margin: 10px;
 }
 .container .section-container .header .boton {
   background-color: #5cb85c;
@@ -199,6 +199,10 @@ body {
   border-radius: 4px;
   padding-left: 10px;
   font-family: "Varela Round", sans-serif;
+}
+.container .section-container .info-container .contenedor-buscador .buscador-texto.buscador-texto:focus {
+  border: 1px solid #51cbee;
+  box-shadow: 0 0 5px #51cbee;
 }
 .container .section-container .tabla-general {
   width: 100%;
