@@ -91,10 +91,11 @@ const insertUsersTable = users => {
 
     editIcon.innerHTML = "edit";
     deleteIcon.innerHTML = "delete";
-    editIcon.setAttribute("class", "material-icons tableIcons");
+    editIcon.setAttribute("class", "material-icons table-icons-edit");
     editIcon.style.color = "#ffc107";
-    deleteIcon.setAttribute("class", "material-icons tableIcons");
+    deleteIcon.setAttribute("class", "material-icons table-icons-delete");
     deleteIcon.style.color = "#f44336";
+    deleteIcon.addEventListener("click", abrirModalDelete);
 
     tdCheck.appendChild(checkbox);
     tdCheck.appendChild(label);
@@ -122,9 +123,9 @@ const clearForm = () => {
 
 // ==================================================================
 
-const abrirModal = () => {
-  const modalWindow = document.querySelector(".bg-modal");
-  const modal = document.querySelector(".bg-modal > .modal-container");
+const abrirModal = id => {
+  const modalWindow = document.querySelector(`.bg-modal#${id}`);
+  const modal = modalWindow.querySelector(".modal-container");
   modalWindow.style.display = "flex";
   modalWindow.classList.add("fadeIn");
   modal.classList.add("fadeInDown");
@@ -132,9 +133,12 @@ const abrirModal = () => {
   modal.classList.remove("fadeOutUp");
 };
 
-const cerrarModal = () => {
-  const modalWindow = document.querySelector(".bg-modal");
-  const modal = document.querySelector(".bg-modal > .modal-container");
+const abrirModalDelete = () => abrirModal("modal-delete");
+const abrirModalAdd = () => abrirModal("modal-add");
+
+const cerrarModal = id => {
+  const modalWindow = document.querySelector(`.bg-modal#${id}`);
+  const modal = modalWindow.querySelector(".modal-container");
   modalWindow.classList.remove("fadeIn");
   modal.classList.remove("fadeInDown");
   modalWindow.classList.add("fadeOut");
@@ -144,13 +148,16 @@ const cerrarModal = () => {
   enableAddBtn();
 };
 
+const cerrarModalDelete = () => cerrarModal("modal-delete");
+const cerrarModalAdd = () => cerrarModal("modal-add");
+
 const newEmployeeBtn = document.querySelector("#new-employee");
-newEmployeeBtn.addEventListener("click", abrirModal);
+newEmployeeBtn.addEventListener("click", abrirModalAdd);
 
 const closeBtn = document.querySelector("#close-btn");
 const cancelBtn = document.querySelector("#cancel-btn");
-closeBtn.addEventListener("click", cerrarModal);
-cancelBtn.addEventListener("click", cerrarModal);
+closeBtn.addEventListener("click", cerrarModalAdd);
+cancelBtn.addEventListener("click", cerrarModalAdd);
 
 const addBtn = document.querySelector("#add-btn");
 
@@ -171,7 +178,7 @@ const addEmployee = async () => {
       disableAddBtn();
       await postearEmployee(employee);
       await fetchUsers();
-      cerrarModal();
+      cerrarModalAdd();
     } else {
       alert("Employee not valid!! :(");
     }
@@ -212,6 +219,6 @@ const selectAllCheckbox = sourceCheckbox => {
   }
 };
 
-sourceCheckbox.addEventListener("click",()=>{
+sourceCheckbox.addEventListener("click", () => {
   selectAllCheckbox(sourceCheckbox);
 });

@@ -11,11 +11,12 @@
 }
 .bg-modal .modal-container {
   width: 400px;
-  height: 490px;
+  height: auto;
   background: white;
   border-radius: 5px;
   box-sizing: border-box;
   margin-top: 30px;
+  position: absolute;
 }
 .bg-modal .modal-container .modal-header {
   width: 100%;
@@ -43,31 +44,6 @@
   text-shadow: 0 1px 0 #fff;
   opacity: 0.2;
 }
-.bg-modal .modal-container .modal-form {
-  width: 100%;
-  padding: 20px 30px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-.bg-modal .modal-container .modal-form .modal-label {
-  margin-bottom: 5px;
-  color: #566787;
-  font-size: 13px;
-}
-.bg-modal .modal-container .modal-form .form-input {
-  margin-bottom: 10px;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-}
-.bg-modal .modal-container .modal-form .form-input.form-input:last-child {
-  margin-bottom: 0;
-}
 .bg-modal .modal-container .modal-footer {
   background-color: #ecf0f1;
   width: 100%;
@@ -80,7 +56,6 @@
   border-top: 1px solid #e5e5e5;
 }
 .bg-modal .modal-container .modal-footer .boton {
-  background-color: #5cb85c;
   display: flex;
   padding: 6px 12px;
   font-size: 13px;
@@ -106,10 +81,51 @@
 }
 .bg-modal .modal-container .modal-footer #add-btn {
   border-color: #4cae4c;
+  background-color: #5cb85c;
 }
 .bg-modal .modal-container .modal-footer #add-btn#add-btn:hover {
   background-color: #449d44;
   border-color: #398439;
+}
+
+.modal-form {
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.modal-form .modal-label {
+  margin-bottom: 5px;
+  color: #566787;
+  font-size: 13px;
+}
+.modal-form .form-input {
+  margin-bottom: 10px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+}
+.modal-form .form-input.form-input:last-child {
+  margin-bottom: 0;
+}
+
+.delete-modal {
+  width: 100%;
+  padding: 20px 30px;
+}
+.delete-modal .delete-modal-title {
+  color: #566787;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.delete-modal .delete-modal-p-warning {
+  color: #8a6d3b;
+  font-size: 11px;
 }
 
 /*# sourceMappingURL=modal.css.map */

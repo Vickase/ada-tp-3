@@ -69,15 +69,14 @@
                   <th class="th">Actions</th>
                 </tr>
               </thead>
-              <tbody id="tbody">
-              </tbody>
+              <tbody id="tbody"></tbody>
             </table>
           </div>
         </section>
       </section>
 
       <!-- Modal section -->
-      <div class="bg-modal animated">
+      <div class="bg-modal animated" id="modal-add">
         <section class="modal-container animated">
           <header class="modal-header">
             <h2 class="modal-title">Add Employee</h2>
@@ -105,6 +104,26 @@
       </div>
 
       <!-- Delete Modal Section -->
+      <div class="bg-modal animated" id="modal-delete">
+        <section class="modal-container animated">
+          <header class="modal-header">
+            <h2 class="modal-title">Delete Employee</h2>
+            <button id="close-btn">
+              <i class="material-icons">
+                close
+              </i>
+            </button>
+          </header>
+          <article class="delete-modal">
+            <h4 class="delete-modal-title">Are you sure you want to delete these Records?</h4>
+            <p class="delete-modal-p-warning">This action cannot be undone.</p>
+          </article>
+          <footer class="modal-footer">
+            <button class="boton" id="cancel-btn">Cancel</button>
+            <button class="boton" id="delete-btn">Delete</button>
+          </footer>
+        </section>
+      </div>
     </div>
     <script src="./javaScript/scripts.js"></script>
   </body>

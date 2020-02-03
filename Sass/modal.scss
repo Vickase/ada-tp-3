@@ -13,11 +13,12 @@
 
   .modal-container {
     width: 400px;
-    height: 490px;
+    height: auto;
     background: white;
     border-radius: 5px;
     box-sizing: $box;
     margin-top: 30px;
+    position: absolute;
     .modal-header {
       width: 100%;
       height: auto;
@@ -44,31 +45,7 @@
         opacity: 0.2;
       }
     }
-    .modal-form {
-      width: 100%;
-      padding: $padding-form;
-      display: flex;
-      flex-direction: column;
-      box-sizing: $box;
-      .modal-label {
-        margin-bottom: 5px;
-        color: $blue-font;
-        font-size: 13px;
-      }
-      .form-input {
-        margin-bottom: 10px;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        &.form-input:last-child {
-          margin-bottom: 0;
-        }
-      }
-    }
+    
     .modal-footer {
       background-color: #ecf0f1;
       width: 100%;
@@ -80,7 +57,7 @@
       justify-content: flex-end;
       border-top: 1px solid #e5e5e5;
       .boton {
-        background-color: $green-btn;
+        
         display: flex;
         padding: 6px 12px;
         font-size: 13px;
@@ -106,11 +83,52 @@
       }
       #add-btn {
         border-color: #4cae4c;
+        background-color: $green-btn;
         &#add-btn:hover {
           background-color: #449d44;
           border-color: #398439;
         }
       }
     }
+  }
+}
+
+.modal-form {
+  width: 100%;
+  padding: $padding-form;
+  display: flex;
+  flex-direction: column;
+  box-sizing: $box;
+  .modal-label {
+    margin-bottom: 5px;
+    color: $blue-font;
+    font-size: 13px;
+  }
+  .form-input {
+    margin-bottom: 10px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    &.form-input:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.delete-modal{
+  width: 100%;
+  padding: $padding-form;
+  .delete-modal-title{
+    color:$blue-font;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .delete-modal-p-warning{
+    color: #8a6d3b;
+    font-size:11px;
   }
 }
