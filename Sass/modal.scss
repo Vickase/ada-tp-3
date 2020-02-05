@@ -19,6 +19,8 @@
     box-sizing: $box;
     margin-top: 30px;
     position: absolute;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+
     .modal-header {
       width: 100%;
       height: auto;
@@ -45,7 +47,7 @@
         opacity: 0.2;
       }
     }
-    
+
     .modal-footer {
       background-color: #ecf0f1;
       width: 100%;
@@ -57,7 +59,6 @@
       justify-content: flex-end;
       border-top: 1px solid #e5e5e5;
       .boton {
-        
         display: flex;
         padding: 6px 12px;
         font-size: 13px;
@@ -71,12 +72,13 @@
         width: 100px;
         height: 34px;
       }
-      #cancel-btn {
+      .cancel-btn {
         margin-right: 10px;
         color: #333;
         background-color: #fff;
         border-color: #ccc;
-        &#cancel-btn:hover {
+        cursor: pointer;
+        &.cancel-btn:hover {
           background-color: #e6e6e6;
           border-color: #adadad;
         }
@@ -87,6 +89,15 @@
         &#add-btn:hover {
           background-color: #449d44;
           border-color: #398439;
+        }
+      }
+      #delete-btn {
+        background-color: #d9534f;
+        border-color: #d43f3a;
+        cursor: pointer;
+        &#delete-btn:hover {
+          background-color: #c9302c;
+          border-color: #ac2925;
         }
       }
     }
@@ -119,16 +130,16 @@
   }
 }
 
-.delete-modal{
-  width: 100%;
+.delete-modal {
   padding: $padding-form;
-  .delete-modal-title{
-    color:$blue-font;
+  .delete-modal-title {
+    color: $blue-font;
     font-size: 13px;
     margin-bottom: 10px;
+    margin-top: 0;
   }
-  .delete-modal-p-warning{
+  .delete-modal-p-warning {
     color: #8a6d3b;
-    font-size:11px;
+    font-size: 11px;
   }
 }

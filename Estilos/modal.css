@@ -17,6 +17,7 @@
   box-sizing: border-box;
   margin-top: 30px;
   position: absolute;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 .bg-modal .modal-container .modal-header {
   width: 100%;
@@ -69,13 +70,14 @@
   width: 100px;
   height: 34px;
 }
-.bg-modal .modal-container .modal-footer #cancel-btn {
+.bg-modal .modal-container .modal-footer .cancel-btn {
   margin-right: 10px;
   color: #333;
   background-color: #fff;
   border-color: #ccc;
+  cursor: pointer;
 }
-.bg-modal .modal-container .modal-footer #cancel-btn#cancel-btn:hover {
+.bg-modal .modal-container .modal-footer .cancel-btn.cancel-btn:hover {
   background-color: #e6e6e6;
   border-color: #adadad;
 }
@@ -86,6 +88,15 @@
 .bg-modal .modal-container .modal-footer #add-btn#add-btn:hover {
   background-color: #449d44;
   border-color: #398439;
+}
+.bg-modal .modal-container .modal-footer #delete-btn {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  cursor: pointer;
+}
+.bg-modal .modal-container .modal-footer #delete-btn#delete-btn:hover {
+  background-color: #c9302c;
+  border-color: #ac2925;
 }
 
 .modal-form {
@@ -115,13 +126,13 @@
 }
 
 .delete-modal {
-  width: 100%;
   padding: 20px 30px;
 }
 .delete-modal .delete-modal-title {
   color: #566787;
   font-size: 13px;
   margin-bottom: 10px;
+  margin-top: 0;
 }
 .delete-modal .delete-modal-p-warning {
   color: #8a6d3b;

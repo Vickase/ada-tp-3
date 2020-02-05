@@ -8,6 +8,31 @@ function isNumeric(num) {
   return !isNaN(num);
 }
 
+//==============================================================================
+// Query selectors
+
+const newEmployeeBtn = document.querySelector("#new-employee");
+const closeAddBtn = document.querySelector(
+  "#modal-add >section > header > #close-btn"
+);
+const cancelDeleteBtn = document.querySelector(
+  "#modal-delete > section > footer > .cancel-btn"
+);
+const closeDeleteBtn = document.querySelector(
+  "#modal-delete >section > header > #close-btn"
+);
+const cancelAddBtn = document.querySelector(
+  "#modal-add > section > footer > .cancel-btn"
+);
+const addBtn = document.querySelector("#add-btn");
+
+const filtro = document.querySelector("#buscador");
+
+const confirmDeleteBtn = document.querySelector("#modal-delete .accept-btn");
+
+//==============================================================================
+// Add employee
+
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
@@ -48,6 +73,27 @@ const postearEmployee = employee => {
     handleError(error);
   }
 };
+
+const addEmployee = async () => {
+  try {
+    const employee = createEmployeeObject();
+    if (isEmployeeValid(employee)) {
+      disableAddBtn();
+      await postearEmployee(employee);
+      await fetchUsers();
+      cerrarModalAdd();
+    } else {
+      alert("Employee not valid!! :(");
+    }
+  } catch (error) {
+    alert(error);
+  }
+};
+
+addBtn.addEventListener("click", addEmployee);
+
+//==============================================================================
+// List employees
 
 const fetchUsers = async q => {
   try {
@@ -93,9 +139,15 @@ const insertUsersTable = users => {
     deleteIcon.innerHTML = "delete";
     editIcon.setAttribute("class", "material-icons table-icons-edit");
     editIcon.style.color = "#ffc107";
+    editIcon.addEventListener("click", () => {
+      abrirModalAdd(user);
+    });
+
     deleteIcon.setAttribute("class", "material-icons table-icons-delete");
     deleteIcon.style.color = "#f44336";
-    deleteIcon.addEventListener("click", abrirModalDelete);
+    deleteIcon.addEventListener("click", () => {
+      abrirModalDelete(user.id);
+    });
 
     tdCheck.appendChild(checkbox);
     tdCheck.appendChild(label);
@@ -121,10 +173,11 @@ const clearForm = () => {
   document.querySelector(".modal-form").reset();
 };
 
-// ==================================================================
+//==============================================================================
+// Modal
 
-const abrirModal = id => {
-  const modalWindow = document.querySelector(`.bg-modal#${id}`);
+const abrirModal = idModal => {
+  const modalWindow = document.querySelector(`.bg-modal#${idModal}`);
   const modal = modalWindow.querySelector(".modal-container");
   modalWindow.style.display = "flex";
   modalWindow.classList.add("fadeIn");
@@ -133,8 +186,27 @@ const abrirModal = id => {
   modal.classList.remove("fadeOutUp");
 };
 
-const abrirModalDelete = () => abrirModal("modal-delete");
-const abrirModalAdd = () => abrirModal("modal-add");
+const abrirModalDelete = id => {
+  abrirModal("modal-delete");
+  // TODO: remover eventListeners pasados (googlear como??????)
+  confirmDeleteBtn.addEventListener("click", () => deleteEmployee(id));
+};
+const abrirModalAdd = employee => {
+  abrirModal("modal-add");
+  if (employee) {
+    fillFormUser(employee);
+  }
+};
+//TODO: hacer la función fillFormUser que modifica el DOM. Me rellena los inputs y dsps definir si hago un PUT o POST.
+const disableAddBtn = () => {
+  addBtn.disable = true;
+  addBtn.style.cursor = "not-allowed";
+  addBtn.style.opacity = "0.65";
+};
+const enableAddBtn = () => {
+  addBtn.disable = false;
+  addBtn.style.cursor = "pointer";
+};
 
 const cerrarModal = id => {
   const modalWindow = document.querySelector(`.bg-modal#${id}`);
@@ -151,45 +223,15 @@ const cerrarModal = id => {
 const cerrarModalDelete = () => cerrarModal("modal-delete");
 const cerrarModalAdd = () => cerrarModal("modal-add");
 
-const newEmployeeBtn = document.querySelector("#new-employee");
 newEmployeeBtn.addEventListener("click", abrirModalAdd);
+closeAddBtn.addEventListener("click", cerrarModalAdd);
+cancelAddBtn.addEventListener("click", cerrarModalAdd);
 
-const closeBtn = document.querySelector("#close-btn");
-const cancelBtn = document.querySelector("#cancel-btn");
-closeBtn.addEventListener("click", cerrarModalAdd);
-cancelBtn.addEventListener("click", cerrarModalAdd);
+cancelDeleteBtn.addEventListener("click", cerrarModalDelete);
+closeDeleteBtn.addEventListener("click", cerrarModalDelete);
 
-const addBtn = document.querySelector("#add-btn");
-
-const disableAddBtn = () => {
-  addBtn.disable = true;
-  addBtn.style.cursor = "not-allowed";
-  addBtn.style.opacity = "0.65";
-};
-const enableAddBtn = () => {
-  addBtn.disable = false;
-  addBtn.style.cursor = "pointer";
-};
-
-const addEmployee = async () => {
-  try {
-    const employee = createEmployeeObject();
-    if (isEmployeeValid(employee)) {
-      disableAddBtn();
-      await postearEmployee(employee);
-      await fetchUsers();
-      cerrarModalAdd();
-    } else {
-      alert("Employee not valid!! :(");
-    }
-  } catch (error) {
-    alert(error);
-  }
-};
-
-addBtn.addEventListener("click", addEmployee);
-
-const filtro = document.querySelector("#buscador");
+//==============================================================================
+// Filtrar employees
 
 const filterEmployee = () => {
   const tbody = document.querySelector("#tabla-users > tbody");
@@ -211,6 +253,9 @@ const filterEmployee = () => {
 
 filtro.addEventListener("keyup", filterEmployee);
 
+//==============================================================================
+// Select All Checkboxes
+
 const sourceCheckbox = document.querySelector("#checkbox");
 const selectAllCheckbox = sourceCheckbox => {
   const checkboxes = document.getElementsByName("check");
@@ -222,3 +267,24 @@ const selectAllCheckbox = sourceCheckbox => {
 sourceCheckbox.addEventListener("click", () => {
   selectAllCheckbox(sourceCheckbox);
 });
+
+//==============================================================================
+// Delete Employees
+
+const _deleteEmployee = async id => {
+  try {
+    await axios.delete(`${baseUrl}/:${id}`);
+  } catch (err) {
+    handleError(err);
+  }
+};
+
+const deleteEmployee = async id => {
+  try {
+    await _deleteEmployee(id);
+    await fetchUsers();
+    cerrarModalDelete();
+  } catch (error) {
+    alert(error);
+  }
+};
