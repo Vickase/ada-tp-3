@@ -56,8 +56,8 @@ const createEmployeeObject = () => {
 
 const isEmployeeValid = employee => {
   const emailValid = validateEmail(employee.email);
-  const fullNameValid = employee.fullname.length <= 50;
-  const addressValid = employee.address.length <= 60;
+  const fullNameValid = employee.fullname.length <= 50 && employee.fullname.length > 0;
+  const addressValid = employee.address.length <= 60 && employee.address.length > 0;
   const phoneValid = isNumeric(employee.phone);
 
   if (fullNameValid && addressValid && emailValid && phoneValid) {
