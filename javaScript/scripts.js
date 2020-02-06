@@ -188,14 +188,19 @@ const abrirModal = idModal => {
 
 const abrirModalDelete = id => {
   abrirModal("modal-delete");
+  window.deleteId = id;
   // TODO: remover eventListeners pasados (googlear como??????)
-  confirmDeleteBtn.addEventListener("click", () => deleteEmployee(id));
+  
 };
+confirmDeleteBtn.addEventListener("click", () => {
+  deleteEmployee(window.deleteId);
+  //confirmDeleteBtn.removeEventListener("click",deleteEmployee(id))
+});
 const abrirModalAdd = employee => {
   abrirModal("modal-add");
-  if (employee) {
+  /* if (employee) {
     fillFormUser(employee);
-  }
+  } */
 };
 //TODO: hacer la función fillFormUser que modifica el DOM. Me rellena los inputs y dsps definir si hago un PUT o POST.
 const disableAddBtn = () => {
@@ -273,7 +278,7 @@ sourceCheckbox.addEventListener("click", () => {
 
 const _deleteEmployee = async id => {
   try {
-    await axios.delete(`${baseUrl}/:${id}`);
+    await axios.delete(`${baseUrl}/users/${id}`);
   } catch (err) {
     handleError(err);
   }
