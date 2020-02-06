@@ -30,6 +30,8 @@ const filtro = document.querySelector("#buscador");
 
 const confirmDeleteBtn = document.querySelector("#modal-delete .accept-btn");
 
+const saveBtn = document.querySelector("#modal-add .accept-btn");
+
 //==============================================================================
 // Add employee
 
@@ -56,8 +58,10 @@ const createEmployeeObject = () => {
 
 const isEmployeeValid = employee => {
   const emailValid = validateEmail(employee.email);
-  const fullNameValid = employee.fullname.length <= 50 && employee.fullname.length > 0;
-  const addressValid = employee.address.length <= 60 && employee.address.length > 0;
+  const fullNameValid =
+    employee.fullname.length <= 50 && employee.fullname.length > 0;
+  const addressValid =
+    employee.address.length <= 60 && employee.address.length > 0;
   const phoneValid = isNumeric(employee.phone);
 
   if (fullNameValid && addressValid && emailValid && phoneValid) {
@@ -89,8 +93,6 @@ const addEmployee = async () => {
     alert(error);
   }
 };
-
-addBtn.addEventListener("click", addEmployee);
 
 //==============================================================================
 // List employees
@@ -189,20 +191,37 @@ const abrirModal = idModal => {
 const abrirModalDelete = id => {
   abrirModal("modal-delete");
   window.deleteId = id;
-  // TODO: remover eventListeners pasados (googlear como??????)
-  
 };
 confirmDeleteBtn.addEventListener("click", () => {
   deleteEmployee(window.deleteId);
-  //confirmDeleteBtn.removeEventListener("click",deleteEmployee(id))
 });
+
 const abrirModalAdd = employee => {
   abrirModal("modal-add");
-  /* if (employee) {
+
+  console.log("este es el employee: ", employee);
+  if (employee) {
+    saveBtn.innerHTML = "Save";
+    saveBtn.style.backgroundColor = "#5bc0de";
+    saveBtn.style.borderColor = "#46b8da";
+    saveBtn.addEventListener("click", () => {
+      modifyEmployee(employee.id);
+    });
     fillFormUser(employee);
-  } */
+  } else {
+    addBtn.addEventListener("click", () => {
+      addEmployee();
+    });
+  }
 };
-//TODO: hacer la función fillFormUser que modifica el DOM. Me rellena los inputs y dsps definir si hago un PUT o POST.
+
+const fillFormUser = employee => {
+  document.querySelector("#name").value = employee.fullname;
+  document.querySelector("#address").value = employee.address;
+  document.querySelector("#email").value = employee.email;
+  document.querySelector("#phone").value = employee.phone;
+};
+
 const disableAddBtn = () => {
   addBtn.disable = true;
   addBtn.style.cursor = "not-allowed";
@@ -226,9 +245,19 @@ const cerrarModal = id => {
 };
 
 const cerrarModalDelete = () => cerrarModal("modal-delete");
-const cerrarModalAdd = () => cerrarModal("modal-add");
+const cerrarModalAdd = () => {
+  cerrarModal("modal-add");
 
-newEmployeeBtn.addEventListener("click", abrirModalAdd);
+  const newButton= saveBtn.cloneNode(true);
+  saveBtn.parentNode.replaceChild(newButton,saveBtn);
+};
+
+newEmployeeBtn.addEventListener("click", {
+  handleEvent: () => {
+    abrirModalAdd();
+  }
+});
+
 closeAddBtn.addEventListener("click", cerrarModalAdd);
 cancelAddBtn.addEventListener("click", cerrarModalAdd);
 
@@ -289,6 +318,34 @@ const deleteEmployee = async id => {
     await _deleteEmployee(id);
     await fetchUsers();
     cerrarModalDelete();
+  } catch (error) {
+    alert(error);
+  }
+};
+
+//==============================================================================
+// Modify Employees
+
+const putEmployee = async (id,employee)=> {
+  try {
+    //console.log(id);
+    await axios.put(`${baseUrl}/users/${id}`,employee);
+  } catch (err) {
+    handleError(err);
+  }
+};
+
+const modifyEmployee = async (id) => {
+  try {
+    console.log(id);
+    const employee = createEmployeeObject();
+    if (isEmployeeValid(employee)) {
+      await putEmployee(id, employee);
+      await fetchUsers();
+      cerrarModalAdd();
+    } else {
+      alert("Employee not valid!!Try again :(");
+    }
   } catch (error) {
     alert(error);
   }
