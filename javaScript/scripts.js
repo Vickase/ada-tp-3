@@ -4,10 +4,6 @@ const handleError = err => {
 
 const baseUrl = "https://tp-js-2-api-wjfqxquokl.now.sh";
 
-function isNumeric(num) {
-  return !isNaN(num);
-}
-
 //==============================================================================
 // Query selectors
 
@@ -35,10 +31,30 @@ const saveBtn = document.querySelector("#modal-add .accept-btn");
 //==============================================================================
 // Add employee
 
-function validateEmail(email) {
+const validateEmail = email => {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
-}
+};
+
+const validateName = fullname => {
+  if (fullname.length <= 50 && fullname.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const isNumeric = strNum => {
+  return !isNaN(strNum);
+};
+
+const validateAddress = address => {
+  if (address.length <= 60 && address.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 const createEmployeeObject = () => {
   const employeeName = document.querySelector("#name").value;
@@ -58,10 +74,8 @@ const createEmployeeObject = () => {
 
 const isEmployeeValid = employee => {
   const emailValid = validateEmail(employee.email);
-  const fullNameValid =
-    employee.fullname.length <= 50 && employee.fullname.length > 0;
-  const addressValid =
-    employee.address.length <= 60 && employee.address.length > 0;
+  const fullNameValid = validateName(employee.fullname);
+  const addressValid = validateAddress(employee.address);
   const phoneValid = isNumeric(employee.phone);
 
   if (fullNameValid && addressValid && emailValid && phoneValid) {
@@ -121,14 +135,14 @@ const insertUsersTable = users => {
     let tdPhone = document.createElement("td");
     let tdActions = document.createElement("td");
 
-    tableRow.setAttribute("class","tr-employee-container");
-    
-    tdCheck.setAttribute("class","td-employee-container");
-    tdActions.setAttribute("class","td-employee-container");
-    tdAddress.setAttribute("class","td-employee-container");
-    tdEmail.setAttribute("class","td-employee-container");
-    tdName.setAttribute("class","td-employee-container");
-    tdPhone.setAttribute("class","td-employee-container");
+    tableRow.setAttribute("class", "tr-employee-container");
+
+    tdCheck.setAttribute("class", "td-employee-container");
+    tdActions.setAttribute("class", "td-employee-container");
+    tdAddress.setAttribute("class", "td-employee-container");
+    tdEmail.setAttribute("class", "td-employee-container");
+    tdName.setAttribute("class", "td-employee-container");
+    tdPhone.setAttribute("class", "td-employee-container");
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -178,6 +192,26 @@ const insertUsersTable = users => {
 
 window.addEventListener("load", event => {
   fetchUsers();
+
+  confirmDeleteBtn.addEventListener("click", () => {
+    deleteEmployee(window.deleteId);
+  });
+  newEmployeeBtn.addEventListener("click", {
+    handleEvent: () => {
+      abrirModalAdd();
+    }
+  });
+
+  closeAddBtn.addEventListener("click", cerrarModalAdd);
+  cancelAddBtn.addEventListener("click", cerrarModalAdd);
+
+  cancelDeleteBtn.addEventListener("click", cerrarModalDelete);
+  closeDeleteBtn.addEventListener("click", cerrarModalDelete);
+  sourceCheckbox.addEventListener("click", () => {
+    selectAllCheckbox(sourceCheckbox);
+  });
+
+  filtro.addEventListener("keyup", filterEmployee);
 });
 
 const clearForm = () => {
@@ -195,26 +229,24 @@ const abrirModal = idModal => {
   modal.classList.add("fadeInDown");
   modalWindow.classList.remove("fadeOut");
   modal.classList.remove("fadeOutUp");
+  document.body.style.overflow = "hidden";
 };
 
 const abrirModalDelete = id => {
   abrirModal("modal-delete");
   window.deleteId = id;
 };
-confirmDeleteBtn.addEventListener("click", () => {
-  deleteEmployee(window.deleteId);
-});
 
 const abrirModalAdd = employee => {
   abrirModal("modal-add");
 
   if (employee) {
     saveBtn.innerHTML = "Save";
-    saveBtn.setAttribute("class","celeste boton");
+    saveBtn.setAttribute("class", "celeste boton");
     saveBtn.onclick = () => {
       modifyEmployee(employee.id);
       saveBtn.onclick = null;
-      saveBtn.style.cursor="not-allowed";
+      saveBtn.style.cursor = "not-allowed";
     };
     fillFormUser(employee);
   } else {
@@ -222,7 +254,7 @@ const abrirModalAdd = employee => {
       addEmployee();
     };
     addBtn.innerHTML = "Add";
-    addBtn.setAttribute("class","verde boton");
+    addBtn.setAttribute("class", "verde boton");
   }
 };
 
@@ -253,23 +285,13 @@ const cerrarModal = id => {
   setTimeout(() => (modalWindow.style.display = "none"), 1000);
   clearForm();
   enableAddBtn();
+  document.body.style.overflow = "visible";
 };
 
 const cerrarModalDelete = () => cerrarModal("modal-delete");
 const cerrarModalAdd = () => {
   cerrarModal("modal-add");
 };
-newEmployeeBtn.addEventListener("click", {
-  handleEvent: () => {
-    abrirModalAdd();
-  }
-});
-
-closeAddBtn.addEventListener("click", cerrarModalAdd);
-cancelAddBtn.addEventListener("click", cerrarModalAdd);
-
-cancelDeleteBtn.addEventListener("click", cerrarModalDelete);
-closeDeleteBtn.addEventListener("click", cerrarModalDelete);
 
 //==============================================================================
 // Filtrar employees
@@ -292,8 +314,6 @@ const filterEmployee = () => {
   }
 };
 
-filtro.addEventListener("keyup", filterEmployee);
-
 //==============================================================================
 // Select All Checkboxes
 
@@ -304,10 +324,6 @@ const selectAllCheckbox = sourceCheckbox => {
     checkboxes[i].checked = sourceCheckbox.checked;
   }
 };
-
-sourceCheckbox.addEventListener("click", () => {
-  selectAllCheckbox(sourceCheckbox);
-});
 
 //==============================================================================
 // Delete Employees
@@ -333,13 +349,8 @@ const deleteEmployee = async id => {
 //==============================================================================
 // Modify Employees
 
-const putEmployee = async (id, employee) => {
-  try {
-    //console.log(id);
-    await axios.put(`${baseUrl}/users/${id}`, employee);
-  } catch (err) {
-    handleError(err);
-  }
+const putEmployee = (id, employee) => {
+  return axios.put(`${baseUrl}/users/${id}`, employee).catch(handleError);
 };
 
 const modifyEmployee = async id => {
@@ -356,3 +367,19 @@ const modifyEmployee = async id => {
     alert(error);
   }
 };
+//==============================================================================
+// Exports
+try {
+  module.exports = exports = {
+    baseUrl,
+    putEmployee,
+    _deleteEmployee,
+    isEmployeeValid,
+    postearEmployee,
+    validateAddress,
+    validateEmail,
+    validateEmail,
+    validateName,
+    isNumeric
+  };
+} catch (e) {}

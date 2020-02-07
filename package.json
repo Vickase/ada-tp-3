@@ -1,0 +1,25 @@
+{
+  "name": "3er-tp-en-ada",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vickase/ada-tp-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vickase/ada-tp-3/issues"
+  },
+  "homepage": "https://github.com/Vickase/ada-tp-3#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
