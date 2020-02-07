@@ -1,6 +1,6 @@
 .bg-modal {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
@@ -65,10 +65,10 @@
   color: white;
   text-decoration: none;
   justify-content: center;
-  cursor: pointer;
   font-family: "Varela Round", sans-serif;
   width: 100px;
   height: 34px;
+  cursor: pointer;
 }
 .bg-modal .modal-container .modal-footer .cancel-btn {
   margin-right: 10px;
@@ -80,14 +80,16 @@
 .bg-modal .modal-container .modal-footer .cancel-btn.cancel-btn:hover {
   background-color: #e6e6e6;
   border-color: #adadad;
+  cursor: pointer;
 }
-.bg-modal .modal-container .modal-footer #add-btn {
+.bg-modal .modal-container .modal-footer .verde {
   border-color: #4cae4c;
   background-color: #5cb85c;
 }
-.bg-modal .modal-container .modal-footer #add-btn#add-btn:hover {
+.bg-modal .modal-container .modal-footer .verde.verde:hover {
   background-color: #449d44;
   border-color: #398439;
+  cursor: pointer;
 }
 .bg-modal .modal-container .modal-footer #delete-btn {
   background-color: #d9534f;
@@ -137,6 +139,19 @@
 .delete-modal .delete-modal-p-warning {
   color: #8a6d3b;
   font-size: 11px;
+}
+
+.celeste {
+  border-color: #46b8da;
+  background-color: #5bc0de;
+}
+.celeste.celeste:hover {
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+
+.cant-touch-this {
+  cursor: not-allowed;
 }
 
 /*# sourceMappingURL=modal.css.map */

@@ -24,7 +24,7 @@ const closeDeleteBtn = document.querySelector(
 const cancelAddBtn = document.querySelector(
   "#modal-add > section > footer > .cancel-btn"
 );
-const addBtn = document.querySelector("#add-btn");
+const addBtn = document.querySelector(".verde");
 
 const filtro = document.querySelector("#buscador");
 
@@ -121,6 +121,15 @@ const insertUsersTable = users => {
     let tdPhone = document.createElement("td");
     let tdActions = document.createElement("td");
 
+    tableRow.setAttribute("class","tr-employee-container");
+    
+    tdCheck.setAttribute("class","td-employee-container");
+    tdActions.setAttribute("class","td-employee-container");
+    tdAddress.setAttribute("class","td-employee-container");
+    tdEmail.setAttribute("class","td-employee-container");
+    tdName.setAttribute("class","td-employee-container");
+    tdPhone.setAttribute("class","td-employee-container");
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = "check";
@@ -199,19 +208,21 @@ confirmDeleteBtn.addEventListener("click", () => {
 const abrirModalAdd = employee => {
   abrirModal("modal-add");
 
-  console.log("este es el employee: ", employee);
   if (employee) {
     saveBtn.innerHTML = "Save";
-    saveBtn.style.backgroundColor = "#5bc0de";
-    saveBtn.style.borderColor = "#46b8da";
-    saveBtn.addEventListener("click", () => {
+    saveBtn.setAttribute("class","celeste boton");
+    saveBtn.onclick = () => {
       modifyEmployee(employee.id);
-    });
+      saveBtn.onclick = null;
+      saveBtn.style.cursor="not-allowed";
+    };
     fillFormUser(employee);
   } else {
-    addBtn.addEventListener("click", () => {
+    addBtn.onclick = () => {
       addEmployee();
-    });
+    };
+    addBtn.innerHTML = "Add";
+    addBtn.setAttribute("class","verde boton");
   }
 };
 
@@ -247,11 +258,7 @@ const cerrarModal = id => {
 const cerrarModalDelete = () => cerrarModal("modal-delete");
 const cerrarModalAdd = () => {
   cerrarModal("modal-add");
-
-  const newButton= saveBtn.cloneNode(true);
-  saveBtn.parentNode.replaceChild(newButton,saveBtn);
 };
-
 newEmployeeBtn.addEventListener("click", {
   handleEvent: () => {
     abrirModalAdd();
@@ -326,18 +333,17 @@ const deleteEmployee = async id => {
 //==============================================================================
 // Modify Employees
 
-const putEmployee = async (id,employee)=> {
+const putEmployee = async (id, employee) => {
   try {
     //console.log(id);
-    await axios.put(`${baseUrl}/users/${id}`,employee);
+    await axios.put(`${baseUrl}/users/${id}`, employee);
   } catch (err) {
     handleError(err);
   }
 };
 
-const modifyEmployee = async (id) => {
+const modifyEmployee = async id => {
   try {
-    console.log(id);
     const employee = createEmployeeObject();
     if (isEmployeeValid(employee)) {
       await putEmployee(id, employee);

@@ -2,7 +2,7 @@
 
 .bg-modal {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
@@ -67,10 +67,10 @@
         color: $background;
         text-decoration: none;
         justify-content: center;
-        cursor: pointer;
         font-family: $font;
         width: 100px;
         height: 34px;
+        cursor:pointer;
       }
       .cancel-btn {
         margin-right: 10px;
@@ -81,16 +81,19 @@
         &.cancel-btn:hover {
           background-color: #e6e6e6;
           border-color: #adadad;
+          cursor: pointer;
         }
       }
-      #add-btn {
+      .verde {
         border-color: #4cae4c;
         background-color: $green-btn;
-        &#add-btn:hover {
+        &.verde:hover {
           background-color: #449d44;
           border-color: #398439;
+          cursor: pointer;
         }
       }
+      
       #delete-btn {
         background-color: #d9534f;
         border-color: #d43f3a;
@@ -143,3 +146,15 @@
     font-size: 11px;
   }
 }
+.celeste {
+  border-color: #46b8da;
+  background-color: #5bc0de;
+  &.celeste:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+  }
+}
+
+.cant-touch-this{
+  cursor:not-allowed;
+} 
