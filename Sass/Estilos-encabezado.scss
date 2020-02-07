@@ -1,5 +1,4 @@
-@import './modal';
-@import './modalcard';
+@import './modal.scss';
 
 body {
   background: whitesmoke;
@@ -89,7 +88,7 @@ body {
     .tabla-general {
       width: 100%;
       margin-top: 20px;
-      thead {
+      tr thead {
         width: 100%;
         font-weight: 600;
         .tr-table {

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="StyleSheet" href="Estilos/Estilos-encabezado.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
+    <title>Manage Employees</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="section-container">
+        <!---Encabezado-->
+
+        <header class="header">
+          <h1 class="header-title">Manage Employees</h1>
+          <button class="boton" id="botonAgregar">
+            <i class="material-icons"> add_circle </i>
+            <span class="button-text">Add New Employee </span>
+          </button>
+        </header>
+
+        <section class="info-container">
+          <!--Buscador/filtro-->
+
+          <div class="contenedor-buscador">
+            <input id="buscador" class="buscador-texto" placeholder="Filter..." type="text"/>
+          </div>
+
+          <!-- Tabla -->
+          <div class="table-container">
+          <table class="tabla-general">
+            <tr>
+              <thead class="cabeza-tabla">
+                <tr class="tr-table">
+                  <th class="th" id="check">
+                    <input type="checkbox" id="checkbox" class="checkbox" name="checkbox"/>
+                    <label for="checkbox"></label>
+                  </th>
+                  <th class="th">Name</th>
+                  <th class="th">Email</th>
+                  <th class="th">Address</th>
+                  <th class="th">Phone</th>
+                  <th class="th">Actions</th>
+                </tr>
+              </thead
+              >
+              <tbody class="cuerpo-tabla">
+
+              </tbody>
+              </tr>
+          </table>
+          </div>
+        </section>
+      </section>
+    </div>
+
+
+
+      <!---modal agregar-->
+      <section id="agregar" class="modal">
+         <article class="modal-form">
+             <header>
+                 <h2>Add Employee</h2>
+                 <button class="closeModal">x</button>
+             </header>
+             <form>
+                 <label for="name">Name</label>
+                 <input type="text" id="name" maxlength="50" required>
+                 <label for="email">Email</label>
+                 <input type="email" id="email" required>
+                 <label for="Address">Address</label>
+                 <textarea id="Address" rows="2" maxlength="60" required></textarea>
+                 <label for="Phone">Phone</label>
+                 <input type="tel" id="Phone" required>
+             </form>
+             <footer>
+                 <input  type="button" value="Cancel" class="cancelar-camb modal-button" id="cancelarCamb">
+                 <input type="submit" value="Add" class="guardarCambios modal-button" id="guardarCamb">
+             </footer>
+         </article>
+     </section>
+
+ <!-- modal modificar-->
+ <section id="modal-modificar" class="modal">
+   <article class="modal-form card" id="add-employee">
+       <header>
+           <h2>Edit Employee</h2>
+           <button class="closeModal">x</button>
+       </header>
+       <form >
+           <label for="name">Name</label>
+           <input type="text" id="fullname" maxlength="50" required>
+           <label for="email">Email</label>
+           <input type="email" id="fullemail" required>
+           <label for="Address">Address</label>
+           <textarea id="fulladdress" rows="2" maxlength="60" required></textarea>
+           <label for="Phone">Phone</label>
+           <input type="tel" id="fullphone" required>
+       </form>
+       <footer>
+           <input type="button" value="Cancel" class=" modal-button cancelar-camb">
+           <input  id="guadarModif" type="submit" value="Save" class="modal-button guardarCambios">
+       </footer>
+   </article>
+</section>
+<section class="modal">
+
+   <!--- modal borrar-->
+
+   <section class="modal">
+      <article class="modal-form delete">
+          <header>
+              <h2>Delete Employee</h2>
+              <button class="close">x</button>
+          </header>
+          <div class="delete-question">
+              <p>Are you sure you want to delete this records?</p>
+              <p>This action cannot be undone</p>
+          </div>
+          <footer>
+              <input type="button" value="Cancel" class="cancelButton modal-button">
+              <input type="submit" value="Delete" class="deleteButton modal-button">
+          </footer>
+      </article>
+  </section>
+  <footer>
+      <script src="js/getEmployeesHTML.js"></script>
+  </footer>
+
+  <script src="JavaScript/base.js"> </script>
+  <script src="JavaScript/cambiarModals.js"></script>
+  <script src="JavaScript/printList.js"></script>
+  <script src="JavaScript/check.js"></script>
+  <script src="JavaScript/get.js"></script>
+  <script src="JavaScript/edit.js"></script>
+  <script src="JavaScript/get.js"></script>
+  <script src="JavaScript/post.js"></script>
+  <script src="JavaScript/search.js"></script>
+</body>
+</html>

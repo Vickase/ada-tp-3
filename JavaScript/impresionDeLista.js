@@ -1,39 +1,46 @@
 
-const fullnameUpd = document.querySelector("#update-fullname");
-const emailUpd = document.querySelector("#update-email");
-const addressUpd = document.querySelector("#update-address");
-const phoneUpd = document.querySelector("#update-phone")
-const employeeListHTML = document.querySelector(".employees-list-body");
+const fullName = document.querySelector("#fullname");
+const fullEmail = document.querySelector("#fullemail");
+const fullAddress = document.querySelector("#fulladdress");
+const fullPhone = document.querySelector("#fullphone");
+const employeeListHTML = document.querySelector(".cuerpo-tabla");
+let currentId;
 
-const printList = (list) => {
-    employeeListHTML.innerHTML = "";
+
+const imprimirList = (list) => {
+    tablaGeneralHTML.innerHTML = "";
     list.map(employee=>{ 
-        
         let tr = document.createElement("tr");
+        
         let checkboxTh= document.createElement("th");
 
-        let span = document.createElement("span");
+        let label = document.createElement("label");
         let checkbox= document.createElement("input");
         checkbox.type="checkbox";
-        span.appendChild(checkbox);
-        checkboxTh.appendChild(span);        
-        checkboxTh.classList.add="th-checkbox";        
+        checkbox.className="checkbox";
+        label.classList.add("label-checkbox");
+        let icon = document.createElement("i");
+        icon.className= `fa fa-check-square`;
+        label.appendChild(checkbox);
+        label.appendChild(icon);
+        checkboxTh.appendChild(label);        
+        checkboxTh.classList.add("th-checkbox");        
         tr.appendChild(checkboxTh);
 
         let nameTh= document.createElement("th");
-        nameTh.innerHTML = employee.fullname;
+        nameTh.innerHTML = employee.fullName;
         tr.appendChild(nameTh);
 
         let emailTh= document.createElement("th");
-        emailTh.innerHTML = employee.email;
+        emailTh.innerHTML = employee.fullEmail;
         tr.appendChild(emailTh);        
         
         let addressTh= document.createElement("th");
-        addressTh.innerHTML = employee.address;
+        addressTh.innerHTML = employee.fullAddress;
         tr.appendChild(addressTh);        
         
         let phoneTh= document.createElement("th");
-        phoneTh.innerHTML = employee.phone;
+        phoneTh.innerHTML = employee.fullPhone;
         tr.appendChild(phoneTh);        
 
         let actionsTh= document.createElement("th");
@@ -49,21 +56,19 @@ const printList = (list) => {
         let spanEdit = document.createElement("span");
         spanEdit.innerHTML = `<i class="fa fa-edit"></i>`;
         spanEdit.addEventListener("click", ()=>{
-            abrirModal("modificar-usuario");
-            fullnameUpd.value = employee.fullname;
-            emailUpd.value= employee.email;
-            addressUpd.value=employee.address;
-            phoneUpd.value=employee.phone;
+            abrirModal("modify-employee");
+            fullname.value = employee.fullname;
+            fullemail.value= employee.fullemail;
+            fulladdress.value=employee.fullAddress;
+            fullphone.value=employee.fullPhone;
             currentId = employee.id;     
-        })
+        });
         
         actionsTh.appendChild(spanDelete);
         actionsTh.appendChild(spanEdit);
         tr.appendChild(actionsTh);
 
         tr.classList.add("employees-list-item");
-        employeeListHTML.appendChild(tr);
+        tablaGeneralHTML.appendChild(tr);
     })
-
-    
 };

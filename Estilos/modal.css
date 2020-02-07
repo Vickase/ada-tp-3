@@ -1,0 +1,186 @@
+.modal {
+  background-color: #7b7b7b;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  opacity: 0.7;
+}
+
+.modal-form {
+  background-color: #ffffff;
+  border-radius: 3px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 491px;
+  margin-top: 30px;
+  overflow: hidden;
+  width: 400px;
+}
+.modal-form header {
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+.modal-form header h2 {
+  color: #566787;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+.modal-form form {
+  display: flex;
+  flex-direction: column;
+  height: 416px;
+  padding: 20px 30px;
+}
+.modal-form form label {
+  color: #566787;
+  font-size: 13px;
+  font-style: normal;
+  margin-bottom: 5px;
+}
+.modal-form form input {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  border-color: #ddd;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 15px;
+  padding: 6px 12px;
+  width: 338px;
+}
+.modal-form form input:focus {
+  border-color: #ddd;
+  box-shadow: none;
+  outline: 0;
+}
+.modal-form form textarea {
+  border: 1px solid #ccc;
+  border-color: #ddd;
+  border-radius: 2px;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 15px;
+  padding: 6px 12px;
+  width: 338px;
+}
+.modal-form form textarea:focus {
+  box-shadow: none;
+  border-color: #ddd;
+  outline: 0;
+}
+.modal-form footer {
+  align-items: center;
+  background-color: #ecf0f1;
+  box-sizing: border-box;
+  display: flex;
+  height: 75px;
+  justify-content: flex-end;
+  margin-bottom: 0;
+  padding: 20px 30px;
+  width: 100%;
+}
+
+.delete {
+  height: 239px;
+}
+
+.delete-question {
+  padding: 20px 30px;
+}
+.delete-question p {
+  color: #566787;
+  font-style: normal;
+  margin-bottom: 10px;
+}
+.delete-question p:nth-child(1) {
+  font-size: 13px;
+}
+.delete-question p:nth-child(2) {
+  color: #8a6d3b;
+  font-size: 11.05px;
+  margin-top: 0;
+}
+
+.addButton {
+  align-items: center;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  display: flex;
+  font-family: "Varela Round", sans-serif;
+  height: 35px;
+  justify-content: space-around;
+  padding: 0 10px 0 10px;
+  width: 172px;
+}
+.addButton:hover {
+  background-color: #398439;
+  cursor: pointer;
+}
+
+.deleteButton {
+  align-items: center;
+  background-color: #f5564b;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  display: flex;
+  font-family: "Varela Round", sans-serif;
+  height: 35px;
+  justify-content: space-around;
+  padding: 0 10px 0 10px;
+  width: 115px;
+}
+.deleteButton:hover {
+  background-color: #f2291b;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+  border-radius: 2px;
+  border-style: solid;
+  color: #333;
+  font-weight: 400px;
+}
+.cancelButton:hover {
+  background-color: #e6e6e6;
+  border-color: #adadad;
+  cursor: pointer;
+}
+
+.saveButton {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+  border-radius: 2px;
+  border-style: solid;
+  color: #fff;
+  font-weight: 400px;
+}
+.saveButton:hover {
+  background-color: #31b0d5;
+  border-color: #269abc;
+  cursor: pointer;
+}
+
+.modal-button {
+  font-size: 14px;
+  height: 34px;
+  margin-left: 5px;
+  width: 100px;
+}
+
+/*# sourceMappingURL=modal.css.map */

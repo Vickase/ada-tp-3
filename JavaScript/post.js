@@ -1,38 +1,43 @@
-/*Agregar usuario--- supuesto post*/
-
-
-const openAddModal = document.querySelector("#botonAgregar");
-openAddModal.addEventListener("click", () => {
-    abrirModal("agregarUsuario");
+//Acá va el post
+const abrirModalAdd = document.querySelector("#botonAgregar");
+abrirModalAdd.addEventListener("click", () => {
+    abrirModal("add-employee");
 });
 
 
-const fullnameId = document.querySelector("#nombre");
-const emailId = document.querySelector("#email");
-const direcId = document.querySelector("#address");
-const telId = document.querySelector("#phone");
+const fullnameid = document.querySelector("#name");
+const emailid = document.querySelector("#email");
+const addressid = document.querySelector("#address");
+const phoneid = document.querySelector("#phone");
 
-const crearUsuario = async () => {
-  let fullname = fullnameId.value;
-  let email= emailId.value;
-  let adress = direcId.value;
-  let phone = telId.value;
+const createEmployee = async () => {
+  let fullname = fullnameid.value;
+  let email = emailid.value;
+  let address = addressid.value;
+  let phone = phoneid.value;
 
   let user = {
     fullname,
     email,  
-    adress,
+    address,
     phone
   };
 
   try {
     const res = await axios.post(baseUrl, user);
-    employeeList.push(res.data);
-    printList(employeeList);
+    getEmployees();
+    fullnameid.value="";
+    emailid.value="";  
+    addressid.value="";
+    phoneid.value="";
   } catch (err) {
     handleError(err);
   }
 };
 
-const submitBttn = document.querySelector("#submitAdd");
-submitBttn.addEventListener("click", createEmployee);
+const submitBoton = document.querySelector("#guardarCamb");
+submitBoton.addEventListener("click", async()=>{
+  await createEmployee();  
+  let card = submitBoton.parentElement.parentElement;
+  cerrarModal(card);
+});
