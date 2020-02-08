@@ -1,6 +1,9 @@
+@import "modal.scss";
+@import "variables.scss";
+
 body {
-  background: whitesmoke;
-  font-family: "Varela Round", sans-serif;
+  background: #f5f5f5;
+  font-family: $font;
   font-size: 12px;
 }
 
@@ -11,17 +14,17 @@ body {
   align-content: center;
   justify-content: center;
   .section-container {
-    width: 90%;
-    background: white;
+    width: 80%;
+    background: $background;
     padding: 15px 20px;
     margin: 25px 0;
     border-radius: 5px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
+    box-sizing: $box;
     .header {
       padding-bottom: 15px;
       background: #435d7d;
-      color: white;
+      color: $background;
       padding: 16px 22px;
       margin: -15px -20px 10px;
       border-radius: 5px 5px 0 0;
@@ -30,19 +33,21 @@ body {
       justify-content: space-between;
       .header-title {
         font-size: 24px;
-        margin: 0;
+        margin: 10px;
       }
       .boton {
-        background-color: #5cb85c;
+        background-color: $green-btn;
         display: flex;
         padding: 6px 12px;
         font-size: 13px;
         text-align: center;
         border: 1px solid transparent;
         border-radius: 4px;
-        color: white;
+        color: $background;
         align-content: center;
         text-decoration: none;
+        cursor: pointer;
+
         .material-icons {
           font-family: "Material Icons";
           font-weight: normal;
@@ -58,14 +63,14 @@ body {
         }
         .button-text {
           padding: 6px;
-          font-family: "Varela Round", sans-serif;
+          font-family: $font;
         }
       }
     }
     .info-container {
       height: auto;
       width: 100%;
-      box-sizing: border-box;
+      box-sizing: $box;
       .contenedor-buscador {
         width: 100%;
         display: flex;
@@ -76,35 +81,58 @@ body {
         .buscador-texto {
           height: 34px;
           width: 30%;
-          border: 1px solid #ccc;
+          border: $border-style;
           border-radius: 4px;
           padding-left: 10px;
-          font-family: "Varela Round", sans-serif;
+          font-family: $font;
+          &.buscador-texto:focus {
+            border: 1px solid rgba(81, 203, 238, 1);
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+          }
         }
       }
     }
     .tabla-general {
       width: 100%;
       margin-top: 20px;
+      border-collapse: collapse;
+      border-spacing: 0;
       thead {
         width: 100%;
         font-weight: 600;
         .tr-table {
-          color: #566787;
+          color: $blue-font;
           width: 100%;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
           font-size: 13px;
-          border-bottom: 2px solid #e9e9e9;
+
           .th {
             padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-bottom: 2px solid #e9e9e9;
           }
           .th:not(:first-child) {
             flex: 1;
+            text-align: left;
+          }
+        }
+      }
+      #tbody {
+        .tr-employee-container {
+          line-height: 1.42;
+          font-size: 13px;
+          color: $blue-font;
+          border-top: 1px solid #ddd;
+          box-sizing: border-box;
+          vertical-align: middle;
+          width: 100%;
+          padding: 10px 0;
+          &.tr-employee-container:nth-child(odd) {
+            background-color: #fcfcfc;
+          }
+          &.tr-employee-container:hover{
+            background-color: #f5f5f5;
+          }
+          .td-employee-container {
+            padding: 15px 15px;
           }
         }
       }
@@ -125,7 +153,7 @@ input[type="checkbox"] {
 
 input[type="checkbox"] + label:before {
   content: "\2714";
-  border: 1px solid #bbb;
+  border: $border-style;
   border-radius: 0.2em;
   display: inline-block;
   width: 1em;
@@ -143,9 +171,9 @@ input[type="checkbox"] + label:active:before {
 }
 
 input[type="checkbox"]:checked + label:before {
-  border-color: #03a9f4;
-  background-color: #03a9f4;
-  color: #fff;
+  border-color: $blue-checkbox;
+  background-color: $blue-checkbox;
+  color: $background;
 }
 
 input[type="checkbox"]:disabled + label:before {
@@ -155,6 +183,22 @@ input[type="checkbox"]:disabled + label:before {
 
 input[type="checkbox"]:checked:disabled + label:before {
   transform: scale(1);
-  border-color: #03a9f4;
-  background-color: #03a9f4;
+  border-color: $blue-checkbox;
+  background-color: $blue-checkbox;
+}
+
+#new-employee:hover {
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.table-icons-delete {
+  margin-left: 10px;
+  &.table-icons-delete:hover {
+    cursor: pointer;
+  }
+}
+
+.table-icons-edit:hover {
+  cursor: pointer;
 }

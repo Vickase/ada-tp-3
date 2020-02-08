@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
-      rel="StyleSheet"
-      href="Estilos/Estilos-encabezado.css"
+      rel="stylesheet"
+      href="estilos/estilos-encabezado.css"
       type="text/css"
       media="screen"
     />
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
@@ -23,6 +25,7 @@
       integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs="
       crossorigin="anonymous"
     ></script>
+
     <title>Manage Employees - tercer tp</title>
   </head>
   <body>
@@ -32,7 +35,7 @@
 
         <header class="header">
           <h1 class="header-title">Manage Employees</h1>
-          <button class="boton">
+          <button class="boton" id="new-employee">
             <i class="material-icons"> add_circle </i>
             <span class="button-text">Add New Employee </span>
           </button>
@@ -52,11 +55,11 @@
 
           <!-- Tabla -->
           <div class="table-container">
-            <table class="tabla-general">
+            <table class="tabla-general" id="tabla-users">
               <thead>
                 <tr class="tr-table">
                   <th class="th" id="check">
-                    <input type="checkbox" id="checkbox" name="checkbox"/>
+                    <input type="checkbox" id="checkbox" name="check" />
                     <label for="checkbox"></label>
                   </th>
                   <th class="th">Name</th>
@@ -66,10 +69,66 @@
                   <th class="th">Actions</th>
                 </tr>
               </thead>
+              <tbody id="tbody"></tbody>
             </table>
           </div>
         </section>
       </section>
+
+      <!-- Modal section -->
+      <div class="bg-modal animated" id="modal-add">
+        <section class="modal-container animated">
+          <header class="modal-header">
+            <h2 class="modal-title">Add Employee</h2>
+            <button id="close-btn">
+              <i class="material-icons">
+                close
+              </i>
+            </button>
+          </header>
+          <form class="modal-form">
+            <label class="modal-label">Name</label>
+            <input class="form-input" id="name" type="text" required />
+            <label class="modal-label">Email</label>
+            <input class="form-input" id="email" type="email" required />
+            <label class="modal-label">Address</label>
+            <textarea class="form-input" id="address" required></textarea>
+            <label class="modal-label">Phone</label>
+            <input class="form-input" id="phone" type="number" required />
+          </form>
+          <footer class="modal-footer">
+            <button class="boton cancel-btn">Cancel</button>
+            <button class="boton accept-btn verde" id="add-btn">Add</button>
+          </footer>
+        </section>
+      </div>
+
+      <!-- Delete Modal Section -->
+      <div class="bg-modal animated" id="modal-delete">
+        <section class="modal-container animated">
+          <header class="modal-header">
+            <h2 class="modal-title">Delete Employee</h2>
+            <button id="close-btn">
+              <i class="material-icons">
+                close
+              </i>
+            </button>
+          </header>
+          <article class="delete-modal">
+            <h4 class="delete-modal-title">Are you sure you want to delete these Records?</h4>
+            <p class="delete-modal-p-warning">This action cannot be undone.</p>
+          </article>
+          <footer class="modal-footer">
+            <button class="boton cancel-btn">Cancel</button>
+            <button class="boton accept-btn" id="delete-btn">Delete</button>
+          </footer>
+        </section>
+      </div>
+
+
+      <!-- Edit Modal Section  -->
+      <div class="bg-modal animated" id="modal-edit"></div>
     </div>
+    <script src="./javaScript/scripts.js"></script>
   </body>
 </html>

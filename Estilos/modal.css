@@ -1,0 +1,156 @@
+.bg-modal {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  display: none;
+}
+.bg-modal .modal-container {
+  width: 400px;
+  height: auto;
+  background: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 30px;
+  position: absolute;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.bg-modal .modal-container .modal-header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.bg-modal .modal-container .modal-header .modal-title {
+  font-size: 18px;
+  color: #566787;
+}
+.bg-modal .modal-container .modal-header #close-btn {
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.2;
+}
+.bg-modal .modal-container .modal-footer {
+  background-color: #ecf0f1;
+  width: 100%;
+  height: 80px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  border-top: 1px solid #e5e5e5;
+}
+.bg-modal .modal-container .modal-footer .boton {
+  display: flex;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: white;
+  text-decoration: none;
+  justify-content: center;
+  font-family: "Varela Round", sans-serif;
+  width: 100px;
+  height: 34px;
+}
+.bg-modal .modal-container .modal-footer .cancel-btn {
+  margin-right: 10px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  cursor: pointer;
+}
+.bg-modal .modal-container .modal-footer .cancel-btn.cancel-btn:hover {
+  background-color: #e6e6e6;
+  border-color: #adadad;
+  cursor: pointer;
+}
+.bg-modal .modal-container .modal-footer .verde {
+  border-color: #4cae4c;
+  background-color: #5cb85c;
+}
+.bg-modal .modal-container .modal-footer .verde.verde:hover {
+  background-color: #449d44;
+  border-color: #398439;
+  cursor: pointer;
+}
+.bg-modal .modal-container .modal-footer #delete-btn {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  cursor: pointer;
+}
+.bg-modal .modal-container .modal-footer #delete-btn#delete-btn:hover {
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+.modal-form {
+  width: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.modal-form .modal-label {
+  margin-bottom: 5px;
+  color: #566787;
+  font-size: 13px;
+}
+.modal-form .form-input {
+  margin-bottom: 10px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+}
+.modal-form .form-input.form-input:last-child {
+  margin-bottom: 0;
+}
+
+.delete-modal {
+  padding: 20px 30px;
+}
+.delete-modal .delete-modal-title {
+  color: #566787;
+  font-size: 13px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.delete-modal .delete-modal-p-warning {
+  color: #8a6d3b;
+  font-size: 11px;
+}
+
+.celeste {
+  border-color: #46b8da;
+  background-color: #5bc0de;
+}
+.celeste.celeste:hover {
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+
+.cant-touch-this {
+  cursor: not-allowed;
+}
+
+/*# sourceMappingURL=modal.css.map */
