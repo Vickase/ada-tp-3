@@ -20,13 +20,13 @@ const closeDeleteBtn = document.querySelector(
 const cancelAddBtn = document.querySelector(
   "#modal-add > section > footer > .cancel-btn"
 );
-const addBtn = document.querySelector(".verde");
+const addBtn = document.querySelector(".verde"); // esto deberia ser buscado por id
 
 const filtro = document.querySelector("#buscador");
 
-const confirmDeleteBtn = document.querySelector("#modal-delete .accept-btn");
+const confirmDeleteBtn = document.querySelector("#modal-delete .accept-btn"); // tambien deberia tener id propio y buscarse por id
 
-const saveBtn = document.querySelector("#modal-add .accept-btn");
+const saveBtn = document.querySelector("#modal-add .accept-btn"); // idem anterior
 
 //==============================================================================
 // Add employee
@@ -224,7 +224,7 @@ const clearForm = () => {
 const abrirModal = idModal => {
   const modalWindow = document.querySelector(`.bg-modal#${idModal}`);
   const modal = modalWindow.querySelector(".modal-container");
-  modalWindow.style.display = "flex";
+  modalWindow.style.display = "flex"; // Esto deberia estar en la clase .modal-container y no llamarse desde aca
   modalWindow.classList.add("fadeIn");
   modal.classList.add("fadeInDown");
   modalWindow.classList.remove("fadeOut");
