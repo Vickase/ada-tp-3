@@ -1,7 +1,7 @@
 const axios = require("axios");
 const funciones = require("../javaScript/scripts");
 
-jest.mock("axios");
+jest.mock("axios"); // falla el test
 global.axios = axios;
 
 describe("scripts", () => {
